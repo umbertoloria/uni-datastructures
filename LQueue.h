@@ -37,7 +37,7 @@
 
 typedef struct LQueue* LQueue;
 
-LQueue newQueue (int);
+LQueue newQueue ();
 
 int emptyQueue (LQueue);
 
