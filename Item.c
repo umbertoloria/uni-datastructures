@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <malloc.h>
-#include "item.h"
+#include "Item.h"
 
-struct item {
+struct Item {
 	int value;
 };
 
-item newItem (int val) {
-	item res = malloc(sizeof(*res));
+Item newItem (int val) {
+	Item res = malloc(sizeof(*res));
 	if (!res) {
 		return NULL;
 	}
@@ -15,7 +15,7 @@ item newItem (int val) {
 	return res;
 }
 
-int outputItem (item i) {
+int outputItem (Item i) {
 	if (i) {
 		printf("%d", i->value);
 		return 1;
@@ -25,8 +25,8 @@ int outputItem (item i) {
 	}
 }
 
-int inputItem (item* i) {
-	*i = malloc(sizeof(item));
+int inputItem (Item* i) {
+	*i = malloc(sizeof(Item));
 	if (!*i) {
 		return 0;
 	}
@@ -34,21 +34,21 @@ int inputItem (item* i) {
 	return 1;
 }
 
-int eq (item a, item b) {
+int eq (Item a, Item b) {
 	if (!a || !b) {
 		return -1;
 	}
 	return a->value == b->value;
 }
 
-int getInt (item i) {
+int getInt (Item i) {
 	if (!i) {
 		return -1;
 	}
 	return i->value;
 }
 
-int destroyItem (item* i) {
+int destroyItem (Item* i) {
 	if (*i) {
 		free(*i);
 		*i = NULL;
@@ -58,7 +58,7 @@ int destroyItem (item* i) {
 }
 
 
-item cloneItem (item i) {
+Item cloneItem (Item i) {
 	if (!i) {
 		return NULL;
 	}

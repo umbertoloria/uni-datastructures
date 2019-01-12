@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <malloc.h>
-#include "ArrayStack.h"
+#include "AStack.h"
 #define STARTSIZE 50
 #define ADDSIZE 20
 
-struct ArrayStack {
-	item* vet;
+struct AStack {
+	Item* vet;
 	int top;
 	int size;
 };
 
-ArrayStack newArrayStack () {
-	ArrayStack res = malloc(sizeof(*res));
+AStack newStack () {
+	AStack res = malloc(sizeof(*res));
 	if (!res) {
 		return NULL;
 	}
-	res->vet = malloc(STARTSIZE * sizeof(item));
+	res->vet = malloc(STARTSIZE * sizeof(Item));
 	if (!res->vet) {
 		free(res);
 		return NULL;
@@ -25,14 +25,14 @@ ArrayStack newArrayStack () {
 	return res;
 }
 
-int emptyStack (ArrayStack s) {
+int emptyStack (AStack s) {
 	if (!s) {
 		return -1;
 	}
 	return s->top == 0;
 }
 
-int push (ArrayStack s, item val) {
+int push (AStack s, Item val) {
 	if (!s) {
 		return -1;
 	}
@@ -40,7 +40,7 @@ int push (ArrayStack s, item val) {
 		return -1;
 	}
 	if (s->top == s->size) {
-		item* tmp = realloc(s->vet, (s->size + ADDSIZE) * sizeof(item));
+		Item* tmp = realloc(s->vet, (s->size + ADDSIZE) * sizeof(Item));
 		if (!tmp) {
 			return 0;
 		}
@@ -52,7 +52,7 @@ int push (ArrayStack s, item val) {
 	return 1;
 }
 
-int pop (ArrayStack s) {
+int pop (AStack s) {
 	if (!s) {
 		return -1;
 	}
@@ -63,7 +63,7 @@ int pop (ArrayStack s) {
 	return 1;
 }
 
-item top (ArrayStack s) {
+Item top (AStack s) {
 	if (!s) {
 		return NULL;
 	}
@@ -73,7 +73,7 @@ item top (ArrayStack s) {
 	return s->vet[s->top - 1];
 }
 
-int outputStack (ArrayStack s) {
+int outputStack (AStack s) {
 	if (!s) {
 		return 0;
 	}
@@ -84,4 +84,5 @@ int outputStack (ArrayStack s) {
 	}
 	outputItem(s->vet[i]);
 	printf("\n");
+	return 1;
 }

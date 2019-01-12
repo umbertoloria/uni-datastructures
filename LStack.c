@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <malloc.h>
-#include "LinkedStack.h"
+#include "LStack.h"
 
 struct node {
-	item value;
+	Item value;
 	struct node* next;
 };
 
-struct LinkedStack {
+struct LStack {
 	struct node* top;
 };
 
-LinkedStack newLinkedStack () {
-	LinkedStack res = malloc(sizeof(*res));
+LStack newStack () {
+	LStack res = malloc(sizeof(*res));
 	if (!res) {
 		return NULL;
 	}
@@ -20,14 +20,14 @@ LinkedStack newLinkedStack () {
 	return res;
 }
 
-int emptyStack (LinkedStack s) {
+int emptyStack (LStack s) {
 	if (!s) {
 		return -1;
 	}
 	return s->top == NULL;
 }
 
-int push (LinkedStack s, item val) {
+int push (LStack s, Item val) {
 	if (!s) {
 		return -1;
 	}
@@ -44,7 +44,7 @@ int push (LinkedStack s, item val) {
 	return 1;
 }
 
-int pop (LinkedStack s) {
+int pop (LStack s) {
 	if (!s) {
 		return -1;
 	}
@@ -57,7 +57,7 @@ int pop (LinkedStack s) {
 	return 1;
 }
 
-item top (LinkedStack s) {
+Item top (LStack s) {
 	if (!s) {
 		return NULL;
 	}
@@ -67,7 +67,7 @@ item top (LinkedStack s) {
 	return s->top->value;
 }
 
-int outputStack (LinkedStack s) {
+int outputStack (LStack s) {
 	if (!s) {
 		return 0;
 	}
@@ -82,4 +82,5 @@ int outputStack (LinkedStack s) {
 	}
 	free(tmp);
 	printf("\n");
+	return 1;
 }

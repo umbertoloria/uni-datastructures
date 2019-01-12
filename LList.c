@@ -1,11 +1,11 @@
 #include <malloc.h>
 #include <stdio.h>
-#include "list.h"
+#include "LList.h"
 
 // Nodo
 
 struct node {
-	item value;
+	Item value;
 	struct node* next;
 };
 
@@ -17,12 +17,12 @@ struct node {
  * Restituisce: Un nodo con item e next forniti nei parametri
  *              NULL se non è stato possibile allocare memoria.
  */
-static struct node* makeNode (item val, struct node* next) {
+static struct node* makeNode (Item val, struct node* next) {
 	struct node* res = malloc(sizeof(*res));
 	if (!res) {
 		return NULL;
 	}
-	item copia = cloneItem(val);
+	Item copia = cloneItem(val);
 	if (!copia) {
 		free(res);
 		return NULL;
@@ -86,7 +86,7 @@ static struct node* removeNode (struct node* n, int pos) {
  *              nella posizione fornita che contiene il valore fornito.
  *              NULL se non è possibile allocare memoria per il nuovo nodo.
  */
-static struct node* insertNode (struct node* n, int pos, item val) {
+static struct node* insertNode (struct node* n, int pos, Item val) {
 	if (pos == 0) {
 		return makeNode(val, n);
 	}
@@ -105,13 +105,13 @@ static struct node* insertNode (struct node* n, int pos, item val) {
 
 // Lista
 
-struct list {
+struct LList {
 	struct node* first;
 	int size;
 };
 
-list newList () {
-	list l = malloc(sizeof(*l));
+LList newList () {
+	LList l = malloc(sizeof(*l));
 	if (!l) {
 		return NULL;
 	}
@@ -120,21 +120,21 @@ list newList () {
 	return l;
 }
 
-int emptyList (list l) {
+int emptyList (LList l) {
 	if (!l) {
 		return -1;
 	}
 	return l->size == 0;
 }
 
-int sizeList (list l) {
+int sizeList (LList l) {
 	if (!l) {
 		return -1;
 	}
 	return l->size;
 }
 
-item getItem (list l, int pos) {
+Item getItem (LList l, int pos) {
 	if (!l) {
 		return NULL;
 	}
@@ -149,7 +149,7 @@ item getItem (list l, int pos) {
 	return cloneItem(tmp->value);
 }
 
-int posItem (list l, item val) {
+int posItem (LList l, Item val) {
 	if (!l) {
 		return -1;
 	}
@@ -159,7 +159,7 @@ int posItem (list l, item val) {
 	struct node* tmp = l->first;
 	int i;
 	for (i = 0; tmp != 0; i++) {
-		if (eq(tmp->value, val)) {
+		if (eq(tmp->value, val) == 1) {
 			return i;
 		}
 		tmp = tmp->next;
@@ -167,7 +167,7 @@ int posItem (list l, item val) {
 	return -1;
 }
 
-int insertList (list l, int pos, item val) {
+int insertList (LList l, int pos, Item val) {
 	if (!l) {
 		return -1;
 	}
@@ -186,7 +186,7 @@ int insertList (list l, int pos, item val) {
 	return 1;
 }
 
-int removeList (list l, int pos) {
+int removeList (LList l, int pos) {
 	if (!l) {
 		return 0;
 	}
@@ -202,7 +202,7 @@ int removeList (list l, int pos) {
 	return 1;
 }
 
-int deleteList (list l) {
+int deleteList (LList l) {
 	if (!l) {
 		return 0;
 	}
@@ -218,7 +218,7 @@ int deleteList (list l) {
 	return 1;
 }
 
-int destroyList (list* l) {
+int destroyList (LList* l) {
 	if (*l) {
 		deleteList(*l);
 		free(*l);
@@ -228,7 +228,7 @@ int destroyList (list* l) {
 	return 0;
 }
 
-int outputList (list l) {
+int outputList (LList l) {
 	if (!l) {
 		return 0;
 	}
@@ -244,11 +244,11 @@ int outputList (list l) {
 	return 1;
 }
 
-list reverseList1 (list l) {
+LList reverseList1 (LList l) {
 	if (!l) {
 		return NULL;
 	}
-	list res = newList();
+	LList res = newList();
 	struct node* tmp = l->first;
 
 	while (tmp) {
@@ -266,7 +266,7 @@ list reverseList1 (list l) {
 	return res;
 }
 
-int reverseList2 (list l) {
+int reverseList2 (LList l) {
 	if (!l) {
 		return 0;
 	}
@@ -283,7 +283,7 @@ int reverseList2 (list l) {
 	return 1;
 }
 
-list cloneList (list l) {
+LList cloneList (LList l) {
 	if (!l) {
 		return NULL;
 	}
@@ -292,7 +292,7 @@ list cloneList (list l) {
 	}
 
 	struct node* tmp = l->first;
-	list res = newList();
+	LList res = newList();
 	res->first = makeNode(tmp->value, NULL);
 
 	struct node* tmp1 = res->first;
@@ -310,13 +310,13 @@ list cloneList (list l) {
 	return res;
 }
 
-list inputList (int n) {
+LList inputList (int n) {
 	if (n <= 0) {
 		return newList();
 	}
 
-	item val;
-	list res = newList();
+	Item val;
+	LList res = newList();
 
 	printf("Elemento di posizione 0: ");
 	inputItem(&val);

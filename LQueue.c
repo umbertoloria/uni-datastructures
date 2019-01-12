@@ -1,20 +1,20 @@
 #include <malloc.h>
 #include <stdio.h>
-#include "LinkedQueue.h"
+#include "LQueue.h"
 
 struct node {
-	item value;
+	Item value;
 	struct node* next;
 };
 
-struct LinkedQueue {
+struct LQueue {
 	struct node* head;
 	struct node* tail;
 	int size;
 };
 
-LinkedQueue newLinkedQueue () {
-	LinkedQueue res = malloc(sizeof(*res));
+LQueue newQueue () {
+	LQueue res = malloc(sizeof(*res));
 	if (!res) {
 		return NULL;
 	}
@@ -24,14 +24,14 @@ LinkedQueue newLinkedQueue () {
 	return res;
 }
 
-int emptyQueue (LinkedQueue q) {
+int emptyQueue (LQueue q) {
 	if (!q) {
 		return -1;
 	}
 	return q->size == 0;
 }
 
-int enqueue (LinkedQueue q, item val) {
+int enqueue (LQueue q, Item val) {
 	if (!q) {
 		return -1;
 	}
@@ -43,6 +43,7 @@ int enqueue (LinkedQueue q, item val) {
 		return 0;
 	}
 	nuovo->value = val;
+	nuovo->next = NULL;
 	if (!q->head) {
 		q->head = nuovo;
 	} else {
@@ -53,14 +54,14 @@ int enqueue (LinkedQueue q, item val) {
 	return 1;
 }
 
-item dequeue (LinkedQueue q) {
+Item dequeue (LQueue q) {
 	if (!q) {
 		return NULL;
 	}
 	if (q->size == 0) {
 		return NULL;
 	}
-	item res = q->head->value;
+	Item res = q->head->value;
 	struct node* del = q->head;
 	q->head = q->head->next;
 	free(del);
@@ -69,4 +70,26 @@ item dequeue (LinkedQueue q) {
 	}
 	q->size--;
 	return res;
+}
+
+int outputQueue (LQueue q) {
+	if (!q) {
+		return 0;
+	}
+	if (q->size == 0) {
+		return 1;
+	}
+	struct node* tmp = q->head;
+	while (tmp != NULL) {
+		if (tmp->next) {
+			outputItem(tmp->value);
+			printf(", ");
+		} else {
+			outputItem(tmp->value);
+			printf(".\n");
+			break;
+		}
+		tmp = tmp->next;
+	}
+	return 1;
 }
