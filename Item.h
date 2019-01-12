@@ -29,6 +29,9 @@
  eq(i1, i2) ➔ e
  	Post: Se (i1 = i2) allora e = 1, altrimenti e = 0
 
+ cmpItem(i1, i2) ➔ e
+ 	Post: Se (i1 < i2) allora e = -1, se (i1 = i2) allora e = 0, altrimenti e = 1
+
  getInt(i) ➔ g
 	Post: g = valore di i
 
@@ -49,6 +52,8 @@ int outputItem (Item);
 int inputItem (Item*);
 
 int eq (Item, Item);
+
+int cmpItem (Item, Item);
 
 /*
  * N.B.: Se il contenuto dell'item fosse -1, per capire che la precondizione

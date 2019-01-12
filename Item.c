@@ -41,6 +41,18 @@ int eq (Item a, Item b) {
 	return a->value == b->value;
 }
 
+int cmpItem (Item a, Item b) {
+	if (!a || !b) {
+		return -1;
+	}
+	if (a->value < b->value) {
+		return -1;
+	} else if (a->value == b->value) {
+		return 0;
+	}
+	return 1;
+}
+
 int getInt (Item i) {
 	if (!i) {
 		return -1;
