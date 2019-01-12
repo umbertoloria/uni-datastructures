@@ -1,25 +1,25 @@
 /**
 
- ADT LList
+ ADT List
 
  SPECIFICA SINTATTICA
 
  Tipi usati: Item, bool, int.
 
  Operatori:
- 	newList()						➤ LList
- 	emptyList(LList)				➤ bool
- 	sizeList(LList)					➤ int
- 	getItem(LList, int)				➤ Item
- 	posItem(LList, Item)			➤ int
- 	insertList(LList, int, Item)	➤ LList
- 	removeList(LList, int)			➤ LList
- 	deleteList(LList)				➤ LList
- 	destroyList(LList)				➤ null
- 	outputList(LList)				➤ int
- 	reverseList(LList)				➤ LList
- 	cloneList(LList)				➤ LList
- 	inputList(int)					➤ LList
+ 	newList()						➤ List
+ 	emptyList(List)					➤ bool
+ 	sizeList(List)					➤ int
+ 	getItem(List, int)				➤ Item
+ 	posItem(List, Item)				➤ int
+ 	insertList(List, int, Item)		➤ List
+ 	removeList(List, int)			➤ List
+ 	deleteList(List)				➤ List
+ 	destroyList(List)				➤ null
+ 	outputList(List)				➤ int
+ 	reverseList(List)				➤ List
+ 	cloneList(List)					➤ List
+ 	inputList(int)					➤ List
 
  SPECIFICA SEMANTICA
 
@@ -69,32 +69,32 @@
 
 #include "Item.h"
 
-typedef struct LList* LList;
+typedef struct List* List;
 
-LList newList ();
+List newList ();
 
-int emptyList (LList);
+int emptyList (List);
 
-int sizeList (LList);
+int sizeList (List);
 
-Item getItem (LList, int);
+Item getItem (List, int);
 
-int posItem (LList, Item);
+int posItem (List, Item);
 
-int insertList (LList, int, Item);
+int insertList (List, int, Item);
 
-int removeList (LList, int);
+int removeList (List, int);
 
-int deleteList (LList);
+int deleteList (List);
 
-int destroyList (LList*);
+int destroyList (List*);
 
-int outputList (LList);
+int outputList (List);
 
-LList reverseList1 (LList);
+List reverseList1 (List);
 
-int reverseList2 (LList);
+int reverseList2 (List);
 
-LList cloneList (LList);
+List cloneList (List);
 
-LList inputList (int);
+List inputList (int);

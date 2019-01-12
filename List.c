@@ -1,6 +1,6 @@
 #include <malloc.h>
 #include <stdio.h>
-#include "LList.h"
+#include "List.h"
 
 // Nodo
 
@@ -105,13 +105,13 @@ static struct node* insertNode (struct node* n, int pos, Item val) {
 
 // Lista
 
-struct LList {
+struct List {
 	struct node* first;
 	int size;
 };
 
-LList newList () {
-	LList l = malloc(sizeof(*l));
+List newList () {
+	List l = malloc(sizeof(*l));
 	if (!l) {
 		return NULL;
 	}
@@ -120,21 +120,21 @@ LList newList () {
 	return l;
 }
 
-int emptyList (LList l) {
+int emptyList (List l) {
 	if (!l) {
 		return -1;
 	}
 	return l->size == 0;
 }
 
-int sizeList (LList l) {
+int sizeList (List l) {
 	if (!l) {
 		return -1;
 	}
 	return l->size;
 }
 
-Item getItem (LList l, int pos) {
+Item getItem (List l, int pos) {
 	if (!l) {
 		return NULL;
 	}
@@ -149,7 +149,7 @@ Item getItem (LList l, int pos) {
 	return cloneItem(tmp->value);
 }
 
-int posItem (LList l, Item val) {
+int posItem (List l, Item val) {
 	if (!l) {
 		return -1;
 	}
@@ -167,7 +167,7 @@ int posItem (LList l, Item val) {
 	return -1;
 }
 
-int insertList (LList l, int pos, Item val) {
+int insertList (List l, int pos, Item val) {
 	if (!l) {
 		return -1;
 	}
@@ -186,7 +186,7 @@ int insertList (LList l, int pos, Item val) {
 	return 1;
 }
 
-int removeList (LList l, int pos) {
+int removeList (List l, int pos) {
 	if (!l) {
 		return 0;
 	}
@@ -202,7 +202,7 @@ int removeList (LList l, int pos) {
 	return 1;
 }
 
-int deleteList (LList l) {
+int deleteList (List l) {
 	if (!l) {
 		return 0;
 	}
@@ -218,7 +218,7 @@ int deleteList (LList l) {
 	return 1;
 }
 
-int destroyList (LList* l) {
+int destroyList (List* l) {
 	if (*l) {
 		deleteList(*l);
 		free(*l);
@@ -228,7 +228,7 @@ int destroyList (LList* l) {
 	return 0;
 }
 
-int outputList (LList l) {
+int outputList (List l) {
 	if (!l) {
 		return 0;
 	}
@@ -244,11 +244,11 @@ int outputList (LList l) {
 	return 1;
 }
 
-LList reverseList1 (LList l) {
+List reverseList1 (List l) {
 	if (!l) {
 		return NULL;
 	}
-	LList res = newList();
+	List res = newList();
 	struct node* tmp = l->first;
 
 	while (tmp) {
@@ -266,7 +266,7 @@ LList reverseList1 (LList l) {
 	return res;
 }
 
-int reverseList2 (LList l) {
+int reverseList2 (List l) {
 	if (!l) {
 		return 0;
 	}
@@ -283,7 +283,7 @@ int reverseList2 (LList l) {
 	return 1;
 }
 
-LList cloneList (LList l) {
+List cloneList (List l) {
 	if (!l) {
 		return NULL;
 	}
@@ -292,7 +292,7 @@ LList cloneList (LList l) {
 	}
 
 	struct node* tmp = l->first;
-	LList res = newList();
+	List res = newList();
 	res->first = makeNode(tmp->value, NULL);
 
 	struct node* tmp1 = res->first;
@@ -310,13 +310,13 @@ LList cloneList (LList l) {
 	return res;
 }
 
-LList inputList (int n) {
+List inputList (int n) {
 	if (n <= 0) {
 		return newList();
 	}
 
 	Item val;
-	LList res = newList();
+	List res = newList();
 
 	printf("Elemento di posizione 0: ");
 	inputItem(&val);
