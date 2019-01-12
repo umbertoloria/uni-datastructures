@@ -12,7 +12,7 @@
  	push(AStack, Item)			➤ AStack
  	pop(AStack)					➤ AStack
  	top(AStack)					➤ Item
- 	outputStack(AStack)			➤ int
+ 	outputStack(AStack)			➤ bool
 
  SPECIFICA SEMANTICA
 

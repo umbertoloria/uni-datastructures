@@ -12,7 +12,7 @@
  	push(LStack, Item)			➤ LStack
  	pop(LStack)					➤ LStack
  	top(LStack)					➤ Item
- 	outputStack(LStack)			➤ int
+ 	outputStack(LStack)			➤ bool
 
  SPECIFICA SEMANTICA
 

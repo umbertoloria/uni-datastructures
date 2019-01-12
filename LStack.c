@@ -24,7 +24,7 @@ int emptyStack (LStack s) {
 	if (!s) {
 		return -1;
 	}
-	return s->top == NULL;
+	return !s->top;
 }
 
 int push (LStack s, Item val) {
@@ -48,7 +48,7 @@ int pop (LStack s) {
 	if (!s) {
 		return -1;
 	}
-	if (s->top == NULL) {
+	if (!s->top) {
 		return 0;
 	}
 	struct node* tmp = s->top;
@@ -61,7 +61,7 @@ Item top (LStack s) {
 	if (!s) {
 		return NULL;
 	}
-	if (s->top == NULL) {
+	if (!s->top) {
 		return NULL;
 	}
 	return s->top->value;

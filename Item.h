@@ -8,17 +8,29 @@
 
  Operatori:
  	newItem(int)					➤ Item
- 	outputItem(Item)				➤ int
- 	inputItem(Item)					➤ int
- 	eq(Item, Item)					➤ bool
- 	getInt(Item)					➤ int
- 	destroyItem(Item)				➤ null
+ 	equalsItem(Item, Item)			➤ bool
+ 	cmpItem(Item, Item)				➤ int
+ 	outputItem(Item)				➤ bool
+ 	inputItem(Item)					➤ bool
  	cloneItem(Item)					➤ Item
+ 	destroyItem(Item)				➤ void
 
  SPECIFICA SEMANTICA
 
  newItem(v) ➔ i
  	Post: i = <v>
+
+ equalsItem(i1, i2) ➔ e
+ 	Pre: i1 ≠ Ø AND i2 ≠ Ø
+ 	Post: Se (i1 = i2) allora e = 1, altrimenti e = 0
+
+ cmpItem(i1, i2) ➔ e
+ 	Pre: i1 ≠ Ø AND i2 ≠ Ø
+ 	Post: e = i1 - i2
+
+ cmpItem(i ➔ k
+ 	Pre: i ≠ Ø
+ 	Post: k = chiave di i
 
  outputItem(i)
 	Post: Output di i
@@ -26,20 +38,11 @@
  inputItem(i) ➔ e
 	Post: i = contiene qualcosa presa in input
 
- eq(i1, i2) ➔ e
- 	Post: Se (i1 = i2) allora e = 1, altrimenti e = 0
-
- cmpItem(i1, i2) ➔ e
- 	Post: Se (i1 < i2) allora e = -1, se (i1 = i2) allora e = 0, altrimenti e = 1
-
- getInt(i) ➔ g
-	Post: g = valore di i
+ cloneItem(i) ➔ c
+	Post: c = i (in una differente locazione di memoria)
 
  destroyItem(i)
 	Post: i scompare
-
- cloneItem(i) ➔ c
-	Post: c = i (in una differente locazione di memoria)
 
  */
 
@@ -47,22 +50,14 @@ typedef struct Item* Item;
 
 Item newItem (int);
 
+int equalsItem (Item, Item);
+
+int cmpItem (Item, Item);
+
 int outputItem (Item);
 
 int inputItem (Item*);
 
-int eq (Item, Item);
-
-int cmpItem (Item, Item);
-
-/*
- * N.B.: Se il contenuto dell'item fosse -1, per capire che la precondizione
- *       non è stata violata e quindi il contenuto restituito è quello
- *       effettivo, accertarsi che l'item passato alla funzione non sia NULL.
- *
- */
-int getInt (Item);
+Item cloneItem (Item);
 
 int destroyItem (Item*);
-
-Item cloneItem (Item);

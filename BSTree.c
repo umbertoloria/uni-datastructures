@@ -1,5 +1,6 @@
 #include <malloc.h>
 #include <stdio.h>
+#include <string.h>
 #include "Item.h"
 #include "BSTree.h"
 

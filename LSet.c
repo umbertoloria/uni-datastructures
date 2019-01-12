@@ -52,7 +52,7 @@ int contains (LSet s, Item val) {
 	}
 	struct node* tmp = s->first;
 	while (tmp) {
-		if (eq(tmp->value, val) == 1) {
+		if (equalsItem(tmp->value, val) == 1) {
 			return 1;
 		}
 		tmp = tmp->next;
@@ -77,12 +77,12 @@ int insertSet (LSet s, Item val) {
 	}
 	struct node* tmp = s->first;
 
-	if (eq(tmp->value, val) == 1) {
+	if (equalsItem(tmp->value, val) == 1) {
 		return 0;
 	}
 
 	while (tmp->next) {
-		if (eq(tmp->next->value, val) == 1) {
+		if (equalsItem(tmp->next->value, val) == 1) {
 			return 0;
 		}
 		tmp = tmp->next;
@@ -106,7 +106,7 @@ int removeSet (LSet s, Item val) {
 
 	struct node* tmp = s->first;
 
-	if (eq(tmp->value, val) == 1) {
+	if (equalsItem(tmp->value, val) == 1) {
 		s->first = s->first->next;
 		free(tmp);
 		s->size--;
@@ -114,7 +114,7 @@ int removeSet (LSet s, Item val) {
 	}
 
 	while (tmp->next) {
-		if (eq(tmp->next->value, val) == 1) {
+		if (equalsItem(tmp->next->value, val) == 1) {
 			struct node* tmp1 = tmp->next;
 			tmp->next = tmp1->next;
 			free(tmp1);
@@ -213,14 +213,14 @@ int outputSet (LSet s) {
 		return 0;
 	}
 	struct node* tmp = s->first;
-	printf("%d", getInt(tmp->value));
+	printf("%d", getValue(tmp->value));
 	tmp = tmp->next;
 	if (!tmp) {
 		printf(".\n");
 		return 1;
 	}
 	while (tmp) {
-		printf(", %d", getInt(tmp->value));
+		printf(", %d", getValue(tmp->value));
 		tmp = tmp->next;
 	}
 	printf(".\n");

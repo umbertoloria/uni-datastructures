@@ -159,7 +159,7 @@ int posItem (List l, Item val) {
 	struct node* tmp = l->first;
 	int i;
 	for (i = 0; tmp != 0; i++) {
-		if (eq(tmp->value, val) == 1) {
+		if (equalsItem(tmp->value, val) == 1) {
 			return i;
 		}
 		tmp = tmp->next;

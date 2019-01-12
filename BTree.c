@@ -13,7 +13,7 @@ BTree newBTree () {
 }
 
 int emptyBTree (BTree t) {
-	return t == NULL;
+	return !t;
 }
 
 Item getRoot (BTree t) {
@@ -77,3 +77,21 @@ void inOrder (BTree t) {
 	printf("\n");
 	inOrder(t->right);
 }
+
+/*void levelOrder (BTree t) {
+	BTree tsx, tdx, tv;
+	Queue q = newQueue();
+	enqueue(q, t);
+	while (!emptyQueue(q)) {
+		tv = dequeue(q);
+		outputItem(getRoot(tv));
+		tsx = leftBTree(tv);
+		tdx = rightBTree(tv);
+		if (tsx) {
+			enqueue(q, tsx);
+		}
+		if (tdx) {
+			enqueue(q, tdx);
+		}
+	}
+}*/

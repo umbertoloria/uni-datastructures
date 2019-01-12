@@ -11,7 +11,7 @@
  	emptyQueue(LQueue)				➤ bool
  	enqueue(LQueue, Item)			➤ LQueue
  	dequeue(LQueue)					➤ (Item, LQueue)
- 	outputQueue(LQueue)				➤ int
+ 	outputQueue(LQueue)				➤ bool
 
  SPECIFICA SEMANTICA
 

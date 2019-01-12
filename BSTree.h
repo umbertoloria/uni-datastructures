@@ -13,7 +13,7 @@
  	contains(BSTree, Item)			➤ bool
  	insertBSTree(BSTree, Item)		➤ bool
  	removeBSTree(BSTree, Item)		➤ bool
- 	outputBSTree(BSTree)			➤ null
+ 	outputBSTree(BSTree)			➤ void
 
  SPECIFICA SEMANTICA
 
@@ -53,8 +53,8 @@ int cardinality (BSTree);
 
 int contains (BSTree, Item);
 
-int insertBSTree(BSTree, Item);
+int insertBSTree (BSTree, Item);
 
-int removeBSTree(BSTree, Item);
+int removeBSTree (BSTree, Item);
 
-int outputBSTree(BSTree);
+int outputBSTree (BSTree);

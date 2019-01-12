@@ -15,7 +15,7 @@
  	insertList(List, int, Item)		➤ List
  	removeList(List, int)			➤ List
  	deleteList(List)				➤ List
- 	destroyList(List)				➤ null
+ 	destroyList(List)				➤ void
  	outputList(List)				➤ int
  	reverseList(List)				➤ List
  	cloneList(List)					➤ List

@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <malloc.h>
 #include "Item.h"
 
@@ -6,13 +8,27 @@ struct Item {
 	int value;
 };
 
-Item newItem (int val) {
+Item newItem (int value) {
 	Item res = malloc(sizeof(*res));
 	if (!res) {
 		return NULL;
 	}
-	res->value = val;
+	res->value = value;
 	return res;
+}
+
+int equalsItem (Item a, Item b) {
+	if (!a || !b) {
+		return -1;
+	}
+	return a->value == b->value;
+}
+
+int cmpItem (Item a, Item b) {
+	if (!a || !b) {
+		return -1;
+	}
+	return a->value - b->value;
 }
 
 int outputItem (Item i) {
@@ -30,34 +46,15 @@ int inputItem (Item* i) {
 	if (!*i) {
 		return 0;
 	}
-	scanf("%d", &((*i)->value));
+	scanf("%d", &(*i)->value);
 	return 1;
 }
 
-int eq (Item a, Item b) {
-	if (!a || !b) {
-		return -1;
-	}
-	return a->value == b->value;
-}
-
-int cmpItem (Item a, Item b) {
-	if (!a || !b) {
-		return -1;
-	}
-	if (a->value < b->value) {
-		return -1;
-	} else if (a->value == b->value) {
-		return 0;
-	}
-	return 1;
-}
-
-int getInt (Item i) {
+Item cloneItem (Item i) {
 	if (!i) {
-		return -1;
+		return NULL;
 	}
-	return i->value;
+	return newItem(i->value);
 }
 
 int destroyItem (Item* i) {
@@ -67,12 +64,4 @@ int destroyItem (Item* i) {
 		return 1;
 	}
 	return 0;
-}
-
-
-Item cloneItem (Item i) {
-	if (!i) {
-		return NULL;
-	}
-	return newItem(i->value);
 }
